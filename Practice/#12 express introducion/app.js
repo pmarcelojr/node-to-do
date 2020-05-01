@@ -5,12 +5,10 @@ const app = express()
 app.set('view engine', 'ejs')
 
 app.get('/', function(req, res){
-    res.writeHead(200, { 'Content-Type': 'text/html'})
-    res.sendFile(__dirname + '/index.html')
+    res.render('index')
 })
 app.get('/contact', (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html'})
-    res.sendFile(__dirname + '/contact.html')
+    res.render('contact')
 })
 
 app.get('/profile/:name', (req, res) => {
