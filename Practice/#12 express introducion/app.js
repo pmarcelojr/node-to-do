@@ -2,15 +2,20 @@ const express = require('express')
 
 const app = express()
 
+app.set('view engine', 'ejs')
+
 app.get('/', function(req, res){
-    res.send('this is the homepage')
+    res.writeHead(200, { 'Content-Type': 'text/html'})
+    res.sendFile(__dirname + '/index.html')
 })
 app.get('/contact', (req, res) => {
-    res.send('this is the contact homepage')
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.sendFile(__dirname + '/contact.html')
 })
 
 app.get('/profile/:name', (req, res) => {
-    res.send(`You requested to see a profile with the name of ${req.params.name}`)
+    let data = {age: 26, job: 'ninja'}
+    res.render('profile', {person: req.params.name, data: data})
 })
 
 app.listen(3000)
